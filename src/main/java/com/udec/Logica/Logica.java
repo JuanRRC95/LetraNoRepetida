@@ -10,6 +10,7 @@ public class Logica {
     /**
      * contructor vacio de la clase
      */
+    private int[] vector3;
     public Logica(){
         capturaDeDatos();
     }
@@ -18,12 +19,13 @@ public class Logica {
      * metodo que captura la frase que se desea analizar 
      */
     public void capturaDeDatos(){
-        System.out.println("Digite la frase :");
+        //System.out.println("Digite la frase :");
         String frase = "";
         Scanner consola = new Scanner(System.in);
         frase=consola.nextLine();  
         //frase=frase.toLowerCase();
         char[] vector = frase.toCharArray();
+        
         indice(vector);
         
     }
@@ -67,16 +69,15 @@ public class Logica {
     public char siguienteLetraRepetida(String letras){
         char letra = 0;
         int indice = 0;
-        String numeros=repetidas(letras);
-        String vectorNumero = repetidas(letras);
+        int[] vector3=repetidas(letras);
         char[] vector = letras.toCharArray();
-        indice=numeros.indexOf("1");
-        if(indice>=0){
-            letra=vector[indice];
-        }
-        if(indice<0){
-            letra='8';
-        }
+        for(int i=0;i<vector3.length;i++){
+            if(vector3[i]==1){
+                return letra=letras.charAt(i);
+            }
+        }        
+        letra='8';   
+            
         return letra;
     }
     
@@ -88,7 +89,7 @@ public class Logica {
      * @param letras cadena con las letras que ya fueron analizadas.
      * @return cadenaNumeros - array con veces que se repite cada caracter.
      */
-    public String repetidas(String letras){
+    public int[] repetidas(String letras){
         char letra = 0;
         int contador=0;
         String cadenaNumeros="";
@@ -106,8 +107,15 @@ public class Logica {
         }
         for(int k=0;k<vectorNumero.length;k++){
             cadenaNumeros=cadenaNumeros+vectorNumero[k];
+            
         }
-        return cadenaNumeros;
+        /*
+        for(int k=0;k<vectorNumero.length;k++){
+            System.out.print("[ "+vectorNumero[k]+" ]");
+            
+        }
+     */
+        return vectorNumero;
     }
     
     /**
